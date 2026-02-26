@@ -1,0 +1,35 @@
+# 虚拟环境
+.venv/
+venv/
+ENV/
+env/
+
+# Python 缓存
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 数据库
+*.sqlite3
+*.db
+
+# 本地配置文件
+local_settings.py
+.env
+
+# IDE 配置（PyCharm 等）
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Django 静态文件
+staticfiles/
+media/
+
+# 日志文件
+*.log
+
+# 系统文件
+.DS_Store
+Thumbs.db

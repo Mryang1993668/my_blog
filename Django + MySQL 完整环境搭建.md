@@ -95,12 +95,15 @@ Authentication: Use Legacy Authentication Method（为了兼容性）
 Root 密码：设置并记住
 
 2. 验证 MySQL 安装
-bash
-# 登录 MySQL
+
+登录 MySQL
+
 mysql -u root -p
 
-# 查看数据库
+查看数据库
+
 mysql> SHOW DATABASES;
+````
 +--------------------+
 | Database           |
 +--------------------+
@@ -109,29 +112,38 @@ mysql> SHOW DATABASES;
 | performance_schema |
 | sys                |
 +--------------------+
+````
 
 3. 创建 Django 项目数据库
+
 sql
+````
 mysql> CREATE DATABASE my_blog_db 
        CHARACTER SET utf8mb4 
        COLLATE utf8mb4_unicode_ci;
 
 mysql> SHOW DATABASES;  -- 确认 my_blog_db 已创建
+````
 
 三、Django 连接 MySQL
 
 安装数据库驱动
+
 由于 mysqlclient 在 Windows + Python 3.14 环境下可能有问题，改用 pymysql：
 
-bash
+
 pip install pymysql
 
-2. 配置 Django 使用 MySQL
+配置 Django 使用 MySQL
+
 步骤1：创建 myblog/__init__.py（如果不存在），添加：
 
 python
+
 import pymysql
+
 pymysql.install_as_MySQLdb()
+
 步骤2：修改 myblog/settings.py 中的数据库配置：
 ````
 python
@@ -150,11 +162,14 @@ DATABASES = {
 }
 ````
 
-3. 迁移数据到 MySQL
-bash
-# 在 MySQL 中创建所有 Django 需要的表
+迁移数据到 MySQL
+
+在 MySQL 中创建所有 Django 需要的表
+
 python manage.py migrate
+
 成功输出（看到所有 OK）：
+
 ````
 text
 Running migrations:
@@ -164,18 +179,24 @@ Running migrations:
   ...（全部 OK）
 ````
 
-4. 创建超级用户
-bash
+创建超级用户
+
 python manage.py createsuperuser
+
 按提示输入用户名、密码
 
 四、验证切换成功
-1. 在 MySQL 中查看数据
-bash
+
+在 MySQL 中查看数据
+
 mysql -u root -p
+
 USE my_blog_db;
+
 SHOW TABLES;
+
 应该看到 Django 创建的所有表：
+
 ````
 text
 +----------------------------+
@@ -192,7 +213,7 @@ text
 +----------------------------+
 ````
 
-2. 查看用户表
+查看用户表
 
 ```sql
 mysql> SELECT id, username, is_superuser FROM auth_user;
@@ -203,17 +224,19 @@ mysql> SELECT id, username, is_superuser FROM auth_user;
 +----+----------+--------------+
 ```
 
-3. 启动 Django 验证
+启动 Django 验证
 
 python manage.py runserver
 
-4. 访问 http://127.0.0.1:8000/admin/
+访问 http://127.0.0.1:8000/admin/
 
 用刚创建的账号登录
 
 
 五、关键命令速查表
+
 Django 命令
+
 | 命令 | 作用 |
 |------|------|
 | `python manage.py runserver` | 启动开发服务器 |
@@ -224,6 +247,7 @@ Django 命令
 | `python manage.py dbshell` | 进入数据库命令行（SQLite） |
 
 MySQL 命令
+
 | 命令 | 作用 |
 |------|------|
 | `mysql -u root -p` | 登录 MySQL |
@@ -235,6 +259,7 @@ MySQL 命令
 | `EXIT;` | 退出 MySQL |
 
 六、常见问题与解决
+
 | 问题 | 原因 | 解决方法 |
 |------|------|----------|
 | `'mysql' 不是内部或外部命令` | MySQL 没加到环境变量 | 手动添加 `C:\Program Files\MySQL\MySQL Server 9.6\bin` 到 PATH |
@@ -244,6 +269,7 @@ MySQL 命令
 | `Unknown database 'my_blog_db'` | 数据库没创建 | 在 MySQL 中先创建数据库 |
 
 七、当前项目结构
+
 ```text
 my_blog/
 ├── .venv/                 # 虚拟环境
@@ -263,6 +289,7 @@ my_blog/
 ├── manage.py              # 项目管理
 └── db.sqlite3             # 原来的 SQLite 数据库（可保留备份）
 ```
+
 八、总结要点
 
 Django 的 MTV 架构：Model（数据）、Template（展示）、View（逻辑）分离

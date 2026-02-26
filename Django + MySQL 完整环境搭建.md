@@ -308,14 +308,12 @@ MySQL 关键点：
 
 数据验证：可以通过 Django 后台或 MySQL 命令行查看
 
-下一步学习建议
+下一步
 
 创建文章模型：在 blog/models.py 中定义 Post 类
 
 编写视图函数：从数据库取数据显示到页面
 
-学习模板语言：{% for %}、{{ variable }} 等
-
-尝试表单：实现文章发布功能
+表单：文章发布功能
 
 探索更多：Django REST framework、用户认证、文件上传等

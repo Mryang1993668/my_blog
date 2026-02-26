@@ -34,28 +34,35 @@ django-admin startproject myblog .
 # └── db.sqlite3（初始 SQLite 数据库）
 ```
 
-2. Django 核心命令
-bash
-# 启动开发服务器
+Django 核心命令
+
+启动开发服务器
+
 python manage.py runserver
 
-# 创建应用
+创建应用
+
 python manage.py startapp blog
 
-# 生成迁移文件
+生成迁移文件
+
 python manage.py makemigrations
 
-# 执行迁移（建表）
+执行迁移（建表）
+
 python manage.py migrate
 
-# 创建超级管理员
+创建超级管理员
+
 python manage.py createsuperuser
 
-# 进入 Django 数据库命令行
+进入 Django 数据库命令行
+
 python manage.py dbshell
 
 
-3. Django MTV 架构理解
+Django MTV 架构理解
+
 | 组件 | 作用 | 文件位置 |
 |------|------|----------|
 | **Model（模型）** | 定义数据结构 | `blog/models.py` |
@@ -66,7 +73,8 @@ python manage.py dbshell
 执行流程：
 
 text 
-```浏览器请求 → urls.py → views.py → models.py → 数据库
+```
+浏览器请求 → urls.py → views.py → models.py → 数据库
         ← template ← views.py ← 数据库返回数据
 ```
 
